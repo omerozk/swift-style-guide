@@ -18,9 +18,12 @@ Writing Objective-C? Check out our [Objective-C Style Guide](https://github.com/
   * [Class Prefixes](#class-prefixes)
   * [Language](#language)
 * [Code Organization](#code-organization)
+  * [Class](#class)
   * [Extensions](#extension)
   * [Unused Code](#unused-code)
   * [Minimal Imports](#minimal-imports)
+  * [Localizable.string](#localizable.string)
+  * [Folder](#folder)
 * [Spacing](#spacing)
 * [Comments](#comments)
 * [Classes and Structures](#classes-and-structures)
@@ -135,6 +138,20 @@ enum Shape {
 }
 ```
 
+Use enum names before the case anywhere you use it
+
+```swift
+enum Shape {
+  case rectangle
+  case square
+  case triangle
+  case circle
+}
+
+Shape.rectangle
+
+```
+
 ### Prose
 
 When referring to functions in prose (tutorials, books, comments) include the required parameter names from the caller's perspective or `_` for unnamed parameters. Examples:
@@ -211,6 +228,11 @@ let colour = "red"
 ## Code Organization
 
 Use extensions to organize your code into logical blocks of functionality. Each extension should be set off with a `// MARK: -` comment to keep things well-organized.
+
+### Class
+
+always write property on top (not in the middle of the code)
+always document important or complicate method (comments)
 
 ### Protocol Conformance
 
@@ -334,6 +356,44 @@ When they are needed, use comments to explain **why** a particular piece of code
 
 Avoid block comments inline with code, as the code should be as self-documenting as possible. *Exception: This does not apply to those comments used to generate documentation.*
 
+
+### Localizable.string
+
+Categories keys by Controller Or WS or group. by adding a commented header for each.
+//  MainVC
+//  WSUser ...
+//  Errors
+//  Gloabl
+
+Naming of the keys: 
+
+some example:
+Controller name + shorten ViewController to VC  +  description + type of UI element (if exist)
+"Main" + "VC" + "_merchant_info" + "_label" -> MainVC_merchant_info_label
+
+for global value like (ok, accept, refuse, cancel, ...)
+Those keys can be used
+global_accept
+global_cancel
+
+
+
+### Folder
+
+A group is always linked to a folder
+
+Some Main Folders : 
+Model -> for models
+WSManager -> for Api, request files (WSUser, WSMerchant, WS...)
+Controller -> Controllers organized in sub-folders per group of feature (example: feature Authentication with Login, Subscribe, ForgetPassword + a storyboard + can include a cell/view folder)
+Extension -> extensions
+Utils -> some usefull class
+Ressources -> fonts, Images.xcassets, Localizable.strings
+
+### Storyboard
+
+One storyboard per feature
+example : feature Authentication with controller Login, Subscribe, ForgetPassword and a storyboard
 
 ## Classes and Structures
 
@@ -467,6 +527,18 @@ func reticulateSplines(spline: [Double], adjustmentFactor: Double,
   // reticulate code goes here
 }
 ```
+
+Functions name should be explicit.
+
+```swift
+func roundViewCorner(view: [UIView], cornerRadius: Double) {
+  // roundViewCorner code goes here
+}
+```
+
+Number of line for a function should be less than 35 (more can be accepted on some case)
+
+One function is one action. for example a method to check a value, another to loop on a specific array, ...
 
 ## Closure Expressions
 
