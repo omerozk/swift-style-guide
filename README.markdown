@@ -24,6 +24,7 @@ Writing Objective-C? Check out our [Objective-C Style Guide](https://github.com/
   * [Minimal Imports](#minimal-imports)
   * [Localizable.string](#localizable.string)
   * [Folder](#folder)
+  * [Storyboard](#storyboard)
 * [Spacing](#spacing)
 * [Comments](#comments)
 * [Classes and Structures](#classes-and-structures)
